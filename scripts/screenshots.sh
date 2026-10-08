@@ -5,8 +5,9 @@ set -e
 cd "$(dirname "$0")/.."
 B=plugins/tech-docs/skills/doc-builder/scripts/build_doc.py
 T=$(mktemp -d)
-python3 "$B" examples/sample.md --out $T/sample.html --eyebrow "Proposal" --subtitle "Queue clustering and database failover" --meta "Prepared for Acme Logistics | Sample document" --brand "Example Infra Co." --stat '$9,750 USD' --stat-label "Total investment" --stat-note "15 days over 5 weeks" --footer "Sample data - fictional customer"
-python3 "$B" examples/sample-vi.md --out $T/sample-vi.html --eyebrow "Đề xuất kiến trúc" --subtitle "Job queue và database, dành cho Acme Logistics" --meta "Tài liệu mẫu, dữ liệu hư cấu" --brand "Example Infra Co." --stat "15 ngày công" --stat-label "Khối lượng ước tính" --stat-note "5 tuần" --footer "Dữ liệu mẫu - khách hàng hư cấu"
+# shellcheck disable=SC2016
+python3 "$B" examples/sample.md --out "$T"/sample.html --eyebrow "Proposal" --subtitle "Queue clustering and database failover" --meta "Prepared for Acme Logistics | Sample document" --brand "Example Infra Co." --stat '$9,750 USD' --stat-label "Total investment" --stat-note "15 days over 5 weeks" --footer "Sample data - fictional customer"
+python3 "$B" examples/sample-vi.md --out "$T"/sample-vi.html --eyebrow "Đề xuất kiến trúc" --subtitle "Job queue và database, dành cho Acme Logistics" --meta "Tài liệu mẫu, dữ liệu hư cấu" --brand "Example Infra Co." --stat "15 ngày công" --stat-label "Khối lượng ước tính" --stat-note "5 tuần" --footer "Dữ liệu mẫu - khách hàng hư cấu"
 python3 - "$T" <<'PY'
 import sys
 from playwright.sync_api import sync_playwright
@@ -21,5 +22,5 @@ with sync_playwright() as p:
     b.close()
 PY
 mkdir -p docs/media
-ffmpeg -loglevel error -y -i $T/sample.png -vf scale=1400:-1:flags=lanczos docs/media/sample-proposal.png
-ffmpeg -loglevel error -y -i $T/sample-vi.png -vf scale=1400:-1:flags=lanczos docs/media/sample-vietnamese.png
+ffmpeg -loglevel error -y -i "$T"/sample.png -vf scale=1400:-1:flags=lanczos docs/media/sample-proposal.png
+ffmpeg -loglevel error -y -i "$T"/sample-vi.png -vf scale=1400:-1:flags=lanczos docs/media/sample-vietnamese.png
