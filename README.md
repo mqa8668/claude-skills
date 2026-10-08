@@ -7,7 +7,9 @@ diagrams and decks, clean HTML/PDF, and Vietnamese technical writing.
 ![CI](https://github.com/mqa8668/claude-skills/actions/workflows/ci.yml/badge.svg)
 ![python stdlib + pandoc](https://img.shields.io/badge/python-stdlib%20%2B%20pandoc-informational)
 
-<!-- sample.png -->
+<p align="center"><img src="docs/media/sample-proposal.png" alt="A proposal rendered by doc-builder: masthead, headline stat and a fee table in a light teal theme" width="900"></p>
+
+<p align="center"><sub>`examples/sample.md` rendered with <code>doc-builder</code> (fictional data).</sub></p>
 
 ## What is inside
 
@@ -21,6 +23,12 @@ Six skills in three plugins.
 | figma-diagrams | `figma-presentation` | Slide decks in Figma Slides using the same design system. | Figma MCP server, `figma:figma-use-slides` |
 | viet-writing | `viet-lach` | Vietnamese document structure: 9 structures, 6 formats, 6 domain presets, style rules. | none |
 | viet-writing | `viet-ky-thuat` | Vietnamese technical writing that keeps English terms engineers actually use, plus EN/VI parity rules. | none |
+
+## Screenshots
+
+<p align="center"><img src="docs/media/sample-vietnamese.png" alt="The same layout in Vietnamese: English infrastructure terms kept, Vietnamese prose, rendered with doc-builder" width="900"></p>
+
+`examples/sample-vi.md`: a Vietnamese document in the hybrid style `viet-ky-thuat` writes, rendered by the same `doc-builder` script.
 
 ## Quickstart
 
