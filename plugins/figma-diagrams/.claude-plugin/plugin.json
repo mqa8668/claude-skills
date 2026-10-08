@@ -1,0 +1,8 @@
+{
+  "name": "figma-diagrams",
+  "version": "0.1.0",
+  "description": "Infrastructure topology diagrams and slide decks drawn in Figma with one shared design system.",
+  "author": { "name": "Loc Luong" },
+  "license": "MIT",
+  "keywords": ["figma", "diagrams", "slides", "infrastructure"]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "tech-docs",
+  "version": "0.1.0",
+  "description": "Architecture and requirements documents, plus a Markdown to HTML/PDF renderer with an AI-tell typography sanitizer.",
+  "author": { "name": "Loc Luong" },
+  "license": "MIT",
+  "keywords": ["documentation", "architecture", "pdf", "markdown"]
+}

@@ -1,0 +1,235 @@
+/* ============================================================================
+   doc-builder - clean light document theme
+   White, airy, one accent color. Built for client-facing quotes / proposals /
+   reports that must read as human and professional.
+   Diagrams and timelines are drawn in Figma (figma-topology) and embedded as
+   images - never as ascii art.
+   --accent and --accent-soft are set inline per document by build_doc.py.
+   ============================================================================ */
+
+:root {
+  --ink:    #182329;   /* headings, strong */
+  --body:   #36474D;   /* body text */
+  --muted:  #6B7B7E;   /* secondary text */
+  --line:   #E5EBEB;   /* hairlines */
+  --panel:  #F5F8F8;   /* soft fills, zebra */
+  --bg:     #FFFFFF;
+  --accent:      #0F766E;  /* overridden inline */
+  --accent-soft: #E4F3F1;  /* overridden inline */
+}
+
+* { box-sizing: border-box; }
+html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+body {
+  margin: 0;
+  font-family: "Inter", -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+  font-size: 10.5pt;
+  line-height: 1.6;
+  color: var(--body);
+  background: #EEF3F3;
+  -webkit-font-smoothing: antialiased;
+}
+
+.doc {
+  max-width: 880px;
+  margin: 28px auto;
+  background: var(--bg);
+  border: 1px solid #E5EBEB;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 10px 34px rgba(20, 32, 46, 0.07);
+}
+
+/* ---- Masthead (light) -------------------------------------------------- */
+.masthead {
+  padding: 46px var(--doc-pad, 52px) 30px;
+  border-bottom: 1px solid var(--line);
+}
+.masthead .brand {
+  font-size: 12pt; font-weight: 700; color: var(--accent);
+  letter-spacing: -0.2px; margin-bottom: 18px;
+  display: flex; align-items: center; gap: 10px;
+}
+.masthead .brand-logo { height: 30px; width: auto; display: block; }
+.masthead .eyebrow {
+  font-size: 9pt; font-weight: 700; letter-spacing: 1.5px;
+  text-transform: uppercase; color: var(--accent); margin-bottom: 10px;
+}
+.masthead .doc-title {
+  font-size: 24pt; font-weight: 700; line-height: 1.18;
+  margin: 0 0 12px; color: var(--ink); letter-spacing: -0.4px;
+}
+.masthead .doc-subtitle {
+  font-size: 11.5pt; color: var(--muted); margin: 0; max-width: 92%;
+}
+.masthead .rule {
+  height: 3px; width: 54px; background: var(--accent);
+  border: 0; border-radius: 2px; margin: 22px 0 0;
+}
+.masthead .doc-meta {
+  font-size: 9.5pt; color: var(--muted); margin: 16px 0 0;
+}
+
+/* optional quote ribbon */
+.doc.confidential .ribbon {
+  display: inline-block; background: var(--accent); color: #fff;
+  font-size: 8.5pt; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  padding: 4px 11px; border-radius: 5px; margin-bottom: 18px;
+}
+
+/* optional headline stat - flat figure, hairlines top/bottom (no filled box) */
+.stat {
+  margin: 22px 0 4px; padding: 15px 0 13px;
+  background: transparent; border-radius: 0;
+  border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
+}
+.stat .stat-label {
+  font-size: 8.8pt; font-weight: 700; letter-spacing: 0.7px; text-transform: uppercase;
+  color: var(--muted); margin-bottom: 6px;
+}
+.stat .stat-value { font-size: 22pt; font-weight: 700; color: var(--ink); line-height: 1.05; }
+.stat .stat-note { font-size: 10pt; color: var(--muted); margin-top: 6px; }
+
+/* ---- Body -------------------------------------------------------------- */
+.doc-body { padding: 14px var(--doc-pad, 52px) 42px; }
+
+.doc-body h2 {
+  font-size: 15pt; font-weight: 700; color: var(--ink);
+  margin: 36px 0 12px; padding-bottom: 7px;
+  border-bottom: 1px solid var(--line); line-height: 1.3;
+}
+.doc-body h2:first-child { margin-top: 24px; }
+.doc-body h3 { font-size: 12pt; font-weight: 700; color: var(--ink); margin: 24px 0 8px; }
+.doc-body h4 {
+  font-size: 10pt; font-weight: 700; color: var(--accent);
+  text-transform: uppercase; letter-spacing: 0.6px; margin: 18px 0 6px;
+}
+.doc-body p { margin: 0 0 11px; }
+.doc-body strong { color: var(--ink); font-weight: 700; }
+.doc-body a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+
+.doc-body ul, .doc-body ol { margin: 0 0 12px; padding-left: 20px; }
+.doc-body li { margin: 0 0 6px; }
+.doc-body li::marker { color: var(--accent); }
+
+.doc-body hr { border: 0; border-top: 1px solid var(--line); margin: 28px 0; }
+
+/* ---- Tables (light header) --------------------------------------------- */
+.doc-body table {
+  width: 100%; border-collapse: collapse; margin: 14px 0 18px;
+  font-size: 9.8pt; border: 1px solid var(--line); border-radius: 10px;
+  overflow: hidden; break-inside: avoid;
+}
+.doc-body thead th {
+  background: var(--panel); color: var(--ink); font-weight: 700; text-align: left;
+  font-size: 8.6pt; letter-spacing: 0.5px; text-transform: uppercase;
+  padding: 11px 13px; border-bottom: 2px solid var(--accent);
+}
+.doc-body tbody td { padding: 10px 13px; border-top: 1px solid var(--line); vertical-align: top; }
+.doc-body tbody tr:nth-child(even) { background: #FAFBFB; }
+.doc-body table th[align="center"], .doc-body table td[align="center"] { text-align: center; }
+.doc-body table th[align="right"],  .doc-body table td[align="right"]  { text-align: right; }
+
+/* ---- Note card (blockquote) -------------------------------------------- */
+.doc-body blockquote {
+  margin: 14px 0; padding: 1px 0 1px 14px; background: transparent;
+  border: 0; border-left: 2px solid var(--line);
+  border-radius: 0; color: var(--muted); font-size: 10pt;
+}
+.doc-body blockquote p { margin: 0 0 6px; }
+.doc-body blockquote p:last-child { margin: 0; }
+
+/* ---- Figures (embedded Figma diagrams) --------------------------------- */
+.doc-body figure { margin: 18px 0 20px; text-align: center; break-inside: avoid; }
+.doc-body figure img, .doc-body p > img {
+  max-width: 100%; height: auto; border: 1px solid var(--line);
+  border-radius: 10px; box-shadow: 0 2px 10px rgba(20, 32, 46, 0.06);
+}
+.doc-body figcaption {
+  font-size: 9pt; color: var(--muted); margin-top: 9px;
+}
+/* Manual pagination hook: drop <div class="pagebreak"></div> into the markdown
+   to start the next block on a fresh sheet. Invisible on screen. */
+.doc-body .pagebreak { display: block; height: 0; margin: 0; }
+
+/* ---- Code (real code only; diagrams go to Figma) ----------------------- */
+.doc-body code {
+  font-family: "SFMono-Regular", "JetBrains Mono", Consolas, monospace;
+  font-size: 9pt; background: var(--panel); color: var(--accent);
+  padding: 1px 5px; border-radius: 4px;
+}
+.doc-body pre {
+  background: var(--panel); color: var(--ink); border: 1px solid var(--line);
+  padding: 16px 18px; border-radius: 10px; overflow-x: auto;
+  margin: 14px 0 18px; break-inside: avoid;
+}
+.doc-body pre code { background: transparent; color: inherit; padding: 0; font-size: 8.8pt; line-height: 1.5; }
+
+/* ---- Pricing tiers (good / better / best) ------------------------------ */
+.doc-body .tiers {
+  display: flex; gap: 14px; margin: 18px 0 20px; align-items: stretch;
+  break-inside: avoid;
+}
+.doc-body .tier {
+  flex: 1; background: var(--bg); border: 1px solid var(--line);
+  border-radius: 12px; padding: 18px 18px 20px;
+}
+.doc-body .tier .tier-name {
+  font-size: 9pt; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+  color: var(--accent); margin-bottom: 8px;
+}
+.doc-body .tier .tier-price {
+  font-size: 22pt; font-weight: 700; color: var(--ink); line-height: 1.05;
+}
+.doc-body .tier .tier-unit { font-size: 10pt; font-weight: 500; color: var(--muted); }
+.doc-body .tier .tier-tag { font-size: 9.6pt; color: var(--body); margin: 10px 0 0; }
+.doc-body .tier .tier-best { font-size: 9pt; color: var(--muted); margin: 10px 0 0; }
+.doc-body .tier.featured {
+  border: 2px solid var(--accent); background: var(--accent-soft);
+}
+.doc-body .tier .badge {
+  display: inline-block; background: var(--accent); color: #fff;
+  font-size: 8pt; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase;
+  padding: 3px 9px; border-radius: 5px; margin-bottom: 10px;
+}
+
+/* ---- Footer ------------------------------------------------------------ */
+.doc-foot {
+  padding: 18px var(--doc-pad, 52px) 28px; border-top: 1px solid var(--line);
+  font-size: 8.5pt; color: var(--muted); display: flex; justify-content: space-between;
+}
+
+/* ---- Print ------------------------------------------------------------- */
+@page { size: A4; margin: 14mm 0; }
+@media print {
+  body { background: #fff; }
+  /* overflow must be visible here or the rounded screen clip would cut the
+     bleeding figures off at the text column's edge */
+  .doc { margin: 0 auto; max-width: 186mm; border: 0; border-radius: 0;
+         box-shadow: none; overflow: visible; }
+  .doc-body h2, .doc-body h3 { break-after: avoid; }
+  .doc-body pre, .doc-body blockquote, .doc-body figure { break-inside: avoid; }
+  /* A long table splits across sheets rather than jumping whole and stranding a
+     half-empty page behind it; the header row repeats on each sheet. The rounded
+     clip has to go, it would stop Chrome fragmenting the box. */
+  .doc-body table { break-inside: auto; overflow: visible; }
+  .doc-body thead { display: table-header-group; }
+  .doc-body tr { break-inside: avoid; }
+  .doc-body p { orphans: 3; widows: 3; }
+  /* cap figure size on paper: an unbreakable full-height image otherwise jumps
+     to the next page and leaves a large gap after a few lines of text */
+  .doc-body figure img, .doc-body p > img {
+    width: auto; height: auto; max-width: 80%; max-height: 100mm;
+  }
+  /* A diagram lands on a sheet of its own anyway, so let it bleed past the text
+     column out to the paper margin: bigger, more readable, and it absorbs the
+     slack that would otherwise show up as white space under it. */
+  .doc-body figure.bleed {
+    margin-left: calc(-1 * var(--fig-bleed, 17.5mm));
+    margin-right: calc(-1 * var(--fig-bleed, 17.5mm));
+  }
+  .doc-body figure.bleed img { max-width: 100%; max-height: var(--fig-max-h, 185mm); }
+  /* Manual pagination escape hatch for the one spot the flow gets wrong. */
+  .doc-body .pagebreak { break-before: page; page-break-before: always; }
+}

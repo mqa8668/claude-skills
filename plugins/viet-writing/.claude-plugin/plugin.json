@@ -1,0 +1,8 @@
+{
+  "name": "viet-writing",
+  "version": "0.1.0",
+  "description": "Vietnamese document structure and technical writing, with EN/VI parity rules.",
+  "author": { "name": "Loc Luong" },
+  "license": "MIT",
+  "keywords": ["vietnamese", "writing", "technical-writing"]
+}

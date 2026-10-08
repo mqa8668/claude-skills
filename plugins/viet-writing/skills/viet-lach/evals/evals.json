@@ -1,0 +1,40 @@
+{
+  "skill_name": "viet-lach",
+  "evals": [
+    {
+      "id": 1,
+      "name": "README bàn giao cho full-stack-demo",
+      "prompt": "Viết README bàn giao cho repo full-stack-demo (17 container Docker Compose, 1 HAProxy ingress cho 6 domain, cert wildcard certs/demo, khởi động docker compose up -d ~40s). Người nhận là kỹ thuật viên tiếp nhận vận hành.",
+      "expected_output": "Một README hoàn chỉnh theo cấu trúc README app/service bàn giao. Dòng đầu ngay dưới tiêu đề nói repo LÀ GÌ trong một câu (BLUF). Có đủ: tính năng chính (bullet năng lực cụ thể), yêu cầu (Docker, Colima/Docker Desktop, RAM 8GB, port), Quickstart copy-paste được kèm kết quả mong đợi cho mỗi lệnh (docker compose up -d, chờ ~40s, docker compose ps STATUS healthy), cấu hình .env dạng BẢNG (không prose), cấu trúc thư mục dạng cây rút gọn, vận hành start/stop/log, Troubleshooting 2-3 lỗi thật (Portal WG alive-but-dead fix netbird down/up, lỗi cert khi đổi domain, thiếu RAM). Mọi lệnh/tên file/đường dẫn trong backtick. Số liệu khớp context (17 container, 6 domain, ~40s). Không lộ mật khẩu thật. Tuyệt đối không em dash/en dash. Không AI-tell (không 'trong thời đại số', không 3 tính từ tự khen kiểu 'nhanh, mạnh, an toàn', không kết 'hy vọng hữu ích').",
+      "files": []
+    },
+    {
+      "id": 2,
+      "name": "Runbook khôi phục Portal WireGuard dead",
+      "prompt": "Viết runbook xử lý sự cố: Portal FIDO2 báo Connected nhưng trình duyệt timeout sau khi restart stack. Cho người trực vận hành làm theo dưới áp lực.",
+      "expected_output": "Một runbook xử lý sự cố theo cấu trúc runbook (vào theo triệu chứng). Có: mục đích một câu, khi nào chạy (triệu chứng quan sát được: Portal Connected nhưng timeout, netbird status thấy relay-flap không ICE), tiền điều kiện (quyền netbird trên máy tiêu thụ, stack Up), các bước ĐÁNH SỐ mỗi bước một hành động với lệnh trong backtick và KẾT QUẢ MONG ĐỢI để verify (bước sửa chính là netbird down && netbird up trên máy tiêu thụ, verify bằng curl -kI trả 200 rồi reload). Có cảnh báo chỉ toggle trên máy tiêu thụ không phải máy chủ. Có rollback/khi vẫn hỏng thì sao (kiểm NETBIRD_VERSION 0.74.0, lazy-connection tắt, setup key invalid thì re-provision). Verify bằng lệnh đọc được kết quả chứ không 'kiểm tra lại'. Không em dash. Không AI-tell.",
+      "files": []
+    },
+    {
+      "id": 3,
+      "name": "Slide báo cáo tiến độ AWS deploy cho sếp",
+      "prompt": "Làm slide báo cáo tiến độ đưa stack FIDO2 lên AWS cho Ban lãnh đạo, khoảng 8-10 slide. Mục tiêu là xin duyệt lịch mở demo public.",
+      "expected_output": "Một outline deck 8-10 slide theo Slide Narrative lồng Pyramid cho phần tóm tắt. Mỗi slide có: loại slide (cover/agenda/divider/nội dung/stat/kết), TIÊU ĐỀ dạng CÂU KHẲNG ĐỊNH (assertion, không phải nhãn danh từ kiểu 'Kết quả' hay 'Tổng quan'), 3-5 gạch nội dung, speaker notes một dòng. Có slide stat big-number cho con số đắt nhất (ví dụ 4 domain public xanh E2E). Một slide một ý. Slide chốt xin quyết định cụ thể (duyệt lịch, giao đầu mối đổi mật khẩu), kết bằng next step chứ không 'cảm ơn đã lắng nghe'. Số liệu khớp context (EC2 t3.large, EIP 203.0.113.10, vm.sh on/off, chi phí on-demand ~$18-25 vs 24/7 ~$80-90). Cuối có ghi chú bàn giao cho figma-presentation để render. Không em dash. Không AI-tell.",
+      "files": []
+    },
+    {
+      "id": 4,
+      "name": "ADR chọn HAProxy thay Nginx",
+      "prompt": "Ghi lại quyết định kiến trúc: dùng một HAProxy single ingress thay cụm file Nginx cho 6 domain trong full-stack-demo. Viết theo ADR.",
+      "expected_output": "Một ADR hoàn chỉnh theo template Nygard với đủ mục: Title (ADR-NNN + tên quyết định), Status (Accepted + ngày), Context (nêu áp lực dẫn tới quyết định: cấu hình Nginx phân mảnh, gotcha DNS phân giải lúc load config làm restart chết, yêu cầu một cert wildcard cho 6 domain), Decision (viết chủ động dứt khoát 'Chúng tôi chọn một HAProxy...', kèm runtime DNS resolver, SSO wait-loop), Consequences (cả mặt được và mặt phải chịu, ví dụ một ingress là một điểm chịu tải chung), Alternatives considered (giữ Nginx, Traefik, một Nginx duy nhất, mỗi cái kèm lý do loại). Một quyết định một ADR, không gộp. Lệnh/tên file trong backtick. Không em dash. Không AI-tell.",
+      "files": []
+    },
+    {
+      "id": 5,
+      "name": "Đề xuất chuyển sang AWS on-demand",
+      "prompt": "Viết đề xuất chuyển demo FIDO2 từ chạy tại chỗ sang hạ tầng AWS public bật/tắt on-demand, để cho khách xem mà không tốn tiền khi không dùng.",
+      "expected_output": "Một đề xuất theo SCQA. Situation: demo chạy tốt tại chỗ (điều không gây tranh cãi). Complication: sếp muốn public cho khách nhưng chạy 24/7 tốn tiền vô ích. Question: làm sao public mà chỉ trả tiền khi thực sự dùng. Answer: EC2 t3.large amd64 + EIP cố định + vm.sh on/off + Terraform IaC, trả lời thẳng câu hỏi rồi mới triển khai. Kèm phạm vi (trong/ngoài phạm vi rõ ràng), chi phí ước lượng có SỐ và dạng bảng (on-demand ~$18-25/tháng vs 24/7 ~$80-90, tiết kiệm ~75%), mốc thời gian theo tuần dạng bảng, và phần ngoài phạm vi chặn kỳ vọng (không HA đa vùng, không WAF/CDN, không giám sát 24/7). Số liệu khớp context. Lệnh trong backtick. Không em dash. Không AI-tell (không động từ kêu rỗng kiểu 'giải pháp toàn diện', 'nâng tầm').",
+      "files": []
+    }
+  ]
+}

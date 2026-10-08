@@ -1,0 +1,34 @@
+{
+  "name": "claude-skills",
+  "owner": { "name": "Loc Luong" },
+  "metadata": {
+    "description": "Claude Code skills for infrastructure documentation: architecture docs, Figma topology diagrams and decks, clean HTML/PDF, and Vietnamese technical writing.",
+    "version": "0.1.0"
+  },
+  "plugins": [
+    {
+      "name": "tech-docs",
+      "source": "./plugins/tech-docs",
+      "description": "Architecture and requirements documents, plus a Markdown to HTML/PDF renderer with an AI-tell typography sanitizer.",
+      "version": "0.1.0",
+      "license": "MIT",
+      "keywords": ["documentation", "architecture", "pdf", "markdown"]
+    },
+    {
+      "name": "figma-diagrams",
+      "source": "./plugins/figma-diagrams",
+      "description": "Infrastructure topology diagrams and slide decks drawn in Figma with one shared design system.",
+      "version": "0.1.0",
+      "license": "MIT",
+      "keywords": ["figma", "diagrams", "slides", "infrastructure"]
+    },
+    {
+      "name": "viet-writing",
+      "source": "./plugins/viet-writing",
+      "description": "Vietnamese document structure and technical writing, with EN/VI parity rules.",
+      "version": "0.1.0",
+      "license": "MIT",
+      "keywords": ["vietnamese", "writing", "technical-writing"]
+    }
+  ]
+}
