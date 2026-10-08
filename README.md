@@ -52,9 +52,15 @@ cd claude-skills
 Try `doc-builder` without Claude:
 
 ```bash
-python3 plugins/tech-docs/skills/doc-builder/scripts/build_doc.py examples/sample.md
-# writes examples/sample.html; add --pdf for a PDF
+python3 plugins/tech-docs/skills/doc-builder/scripts/build_doc.py examples/sample.md \
+  --eyebrow "Proposal" --subtitle "Queue clustering and database failover" \
+  --meta "Prepared for Acme Logistics | Sample document" --brand "Example Infra Co." \
+  --stat '$9,750 USD' --stat-label "Total investment" --stat-note "15 days over 5 weeks" \
+  --footer "Sample data - fictional customer"
+# writes examples/sample.html (the hero screenshot); add --pdf for a PDF
 ```
+
+`scripts/screenshots.sh` rebuilds both screenshots (needs Playwright chromium).
 
 `--pdf` uses headless Chrome. Set `CHROME` to a Chrome or Chromium binary, or put
 `google-chrome` / `chromium` on PATH. On macOS the default app location is tried last.
